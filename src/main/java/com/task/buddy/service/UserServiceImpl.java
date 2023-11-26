@@ -20,18 +20,17 @@ public class UserServiceImpl implements UserService {
     private static final String USER="USER";
 
     private UserRepository userRepository;
-    private TaskRepository taskRepository;
+
     private RoleRepository roleRepository;
+    
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository,
-                           TaskRepository taskRepository,
+    public UserServiceImpl(UserRepository userRepository,                       
                            RoleRepository roleRepository,
                            BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
-        this.taskRepository = taskRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }

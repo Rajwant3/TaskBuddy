@@ -36,15 +36,15 @@ public class SecurityConfiguration {
 
 		http.authenticationProvider(authenticationProvider());
 
-		http.authorizeHttpRequests(
-				authz -> authz.requestMatchers("/register", "/","/h2-console", "/login", "/about", "/css/**", "/webjars/**")
-						.permitAll()
-						.requestMatchers("/profile/**", "/tasks/**", "/task/**", "/users", "/user/**", "/h2-console/**")
-						.permitAll().requestMatchers("/assignment/**").hasRole("ADMIN").anyRequest().authenticated())
+		http.authorizeHttpRequests(authz -> authz
+				.requestMatchers("/register", "/", "/h2-console", "/login", "/about", "/css/**", "/webjars/**")
+				.permitAll()
+				.requestMatchers("/profile/**", "/tasks/**", "/task/**", "/users", "/user/**", "/h2-console/**")
+				.hasAnyAuthority("USER", "ADMIN").requestMatchers("/assignment/**").hasAuthority("ADMIN").anyRequest()
+				.authenticated())
 				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email")
 						.defaultSuccessUrl("/profile", true).permitAll())
 				.logout(logout -> logout.logoutSuccessUrl("/login"));
-//hasAnyRole("USER, ADMIN")
 		return http.build();
 	}
 
