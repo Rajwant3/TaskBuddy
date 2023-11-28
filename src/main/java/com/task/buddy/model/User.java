@@ -30,26 +30,26 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long id;
-	
+
 	@Email(message = "{user.email.not.valid}")
 	@NotEmpty(message = "{user.email.not.empty}")
 	@Column(unique = true)
 	private String email;
-	
+
 	@NotEmpty(message = "{user.name.not.empty}")
 	private String name;
-	
+
 	@NotEmpty(message = "{user.password.not.empty}")
 	@Length(min = 5, message = "{user.password.length}")
 	private String password;
-	
+
 	@Column(columnDefinition = "VARCHAR(255) DEFAULT 'images/user.png'")
 	private String photo;
-	
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
 	private List<Task> tasksOwned;
 
-	@ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles;
 
@@ -137,6 +137,11 @@ public class User {
 
 	public List<Role> getRoles() {
 		return roles;
+	}
+
+	public List<String> getRoleNames() {
+		return roles.stream().map(Role::getRole) // Map each Role entity to its role name
+				.collect(Collectors.toList()); // Collect the role names into a list
 	}
 
 	public void setRoles(List<Role> roles) {

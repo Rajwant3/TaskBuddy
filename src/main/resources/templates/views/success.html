@@ -3,14 +3,14 @@
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head>
-    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/head :: head}"></th:block> /*/-->
     <title>Register - Success</title>
 </head>
 
 <body>
 
 <header>
-    <!--/*/ <th:block th:include="fragments/header :: header('register')"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/header :: header('register')}"></th:block> /*/-->
 </header>
 
 <main class="container">
@@ -20,7 +20,7 @@
 </main>
 
 <footer class="footer">
-    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/footer :: footer}"></th:block> /*/-->
 </footer>
 
 </body>

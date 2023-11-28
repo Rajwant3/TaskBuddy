@@ -3,14 +3,14 @@
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head>
-    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/head :: head}"></th:block> /*/-->
     <title>Create New Task</title>
 </head>
 
 <body>
 
 <header>
-    <!--/*/ <th:block th:include="fragments/header :: header('create-new-task')"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/header :: header('create-new-task')}"></th:block> /*/-->
 </header>
 
 <main class="container">
@@ -75,7 +75,7 @@
 
 
 <footer class="footer">
-    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/footer :: footer}"></th:block> /*/-->
 </footer>
 
 </body>

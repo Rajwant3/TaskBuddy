@@ -1,7 +1,7 @@
-<html lang="eng"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="header(activeTab)">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
@@ -27,7 +27,7 @@
 
                 <!--Assign tasks-->
                 <li th:class="${activeTab == 'assign-tasks'}? 'active nav-item mr-4' : 'nav-item mr-4'"
-                    sec:authorize="hasRole('ROLE_ADMIN')">
+                    sec:authorize="hasAuthority('ADMIN')">
                     <a class="nav-link" href="/assignment">Assign Tasks</a>
                 </li>
 

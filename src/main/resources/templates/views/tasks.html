@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head>
-    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/head :: head}"></th:block> /*/-->
     <title>Tasks List</title>
 </head>
 
 <body>
 
-<header>
-    <!--/*/ <th:block th:include="fragments/header :: header('tasks-list')"></th:block> /*/-->
-</header>
-
+<!-- <header> -->
+    <!--/*/ <th:block th:insert="~{fragments/header :: header('tasks-list')}"></th:block> /*/-->
+<!-- </header>
+ -->
 <main class="container">
     <div class="card mb-3">
 
@@ -27,7 +27,6 @@
         <div class="card card-body">
             <table id="sortableTable" class="my-tab table table-hover text-center"
                    style="table-layout: fixed; width: 100%;">
-
                 <thead class="table-primary">
                 <tr>
                     <th style="width:40%" class="text-left">Task name</th>
@@ -38,15 +37,13 @@
                     <th style="width:8%" class="d-none d-lg-table-cell">Task creator</th>
                     <th style="width:16%" class="d-none d-lg-table-cell" colspan="2">Actions</th>
                 </tr>
-
                 </thead>
 
                 <tbody>
 
                 <tr th:each="t : ${tasks}"
                     th:if="${!onlyInProgress or !t.completed}"
-                    th:with="isThisOneSigned=${t.owner!=null ? t.owner.equals(signedUser) : false}"
-                >
+                    th:with="isThisOneSigned=${t.owner!=null ? t.owner.equals(signedUser) : false}" >
                     <!--Task name and description link-->
                     <td class="text-left">
                         <span>
@@ -125,10 +122,10 @@
                     ></td>
 
                     <!--Days left-->
-                    <td class="text-center col-1 d-none d-lg-table-cell"
-                        th:data-order="${t.date}">
-                        <!--/*/ <th:block th:include="fragments/days-left-until-deadline :: daysLeft(${t})"></th:block> /*/-->
-                    </td>
+                  <!--   <td class="text-center col-1 d-none d-lg-table-cell"
+                        th:data-order="${t.date}"> -->
+                        <!--/*/ <th:block th:insert="~{fragments/days-left-until-deadline :: daysLeft(${t})}"></th:block> /*/-->
+                   <!--  </td> -->
 
                     <!--Completed / In progress-->
                     <td th:data-order="${t.completed} ? 1 : 0"
@@ -220,10 +217,11 @@
     </div>
 </main>
 
-<footer class="footer">
-    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
-</footer>
-
+<!-- <footer class="footer">
+ -->
+     <!--/*/ <th:block th:insert="~{fragments/footer :: footer}"></th:block> /*/-->
+<!-- </footer>
+ -->
 <!--DataTable plug-in-->
 <!--remain scroll position after redirect-->
 <script src="js/main.js"></script>

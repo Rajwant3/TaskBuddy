@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<!--/*/ <th:block th:insert="~{fragments/head :: head}"></th:block> /*/-->
+<title>Task Buddy</title>
+<style>
+body {
+	display: flex;
+	min-height: 100vh;
+	margin: 0;
+	align-items: center;
+	justify-content: center;
+	/* 	background: url('images/home-bg.jpg') center center fixed;
+ */ /* Set the background image */
+}
+
+main {
+	text-align: center;
+}
+
+h1, h3 {
+	font-size: 3.5rem;
+	margin-bottom: 20px;
+	font-weight: bold; /* Make the heading bold */
+	color: green;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+p {
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+	font-weight: bold; /* Make the heading bold */
+	color: green;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#home-img {
+	width: 20%;
+	height: 20%;
+	margin: 20px;
+}
+</style>
+</head>
+
+<body class="d-flex align-items-center justify-content-center">
+	<header>
+		<!--/*/ <th:block th:insert="~{fragments/header :: header('home')}"></th:block> /*/-->
+	</header>
+
+	<main class="container">
+		<h1 class="display-4">
+			Hello, <span th:text="${userName}">></span>
+		</h1>
+
+		<h3 class="display-4">Welcome to Task Buddy</h3>
+		<img id="home-img" src="images/hello-bg.gif">
+		<p>
+			Have too much to do? <br />Don't worry, your buddy will manage it
+		</p>
+	</main>
+
+
+</body>
+</html>

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="eng"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/head :: head}"></th:block> /*/-->
     <title>Assign Tasks</title>
 </head>
 
 <body>
 
 <header>
-    <!--/*/ <th:block th:include="fragments/header :: header('assign-tasks')"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/header :: header('assign-tasks')}"></th:block> /*/-->
 </header>
 
 <main class="container">
@@ -94,9 +94,9 @@
                                 <td th:text="${t.name}"></td>
 
                                 <!--Days left-->
-                                <td class="text-center col-1">
-                                    <!--/*/ <th:block th:include="fragments/days-left-until-deadline :: daysLeft(${t})"></th:block> /*/-->
-                                </td>
+                               <!--  <td class="text-center col-1"> -->
+                                    <!--/*/ <th:block th:insert="~{fragments/days-left-until-deadline :: daysLeft(${t})}"></th:block> /*/-->
+                              <!--   </td> -->
 
                                 <!--Unassign button-->
                                 <td>
@@ -146,9 +146,9 @@
                                 <td th:text="${ft.name}"></td>
 
                                 <!--Days left-->
-                                <td class="text-center col-1">
-                                    <!--/*/ <th:block th:include="fragments/days-left-until-deadline :: daysLeft(${ft})"></th:block> /*/-->
-                                </td>
+<!--                                 <td class="text-center col-1">
+ -->                                    <!--/*/ <th:block th:insert="~{fragments/days-left-until-deadline :: daysLeft(${ft})}"></th:block> /*/-->
+                              <!--   </td> -->
 
                                 <!--Assign button-->
                                 <td>
@@ -175,7 +175,7 @@
 </main>
 
 <footer class="footer">
-    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    <!--/*/ <th:block th:insert="~{fragments/footer :: footer}"></th:block> /*/-->
 </footer>
 
 <!--remain scroll position after redirect-->

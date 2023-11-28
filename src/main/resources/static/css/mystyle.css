@@ -3,6 +3,10 @@ html {
     min-height: 100%;
 }
 
+#home-img{
+	width: 200px;
+	height: 100px
+}
 main.container {
     padding: 80px 5px 60px 5px;
 }

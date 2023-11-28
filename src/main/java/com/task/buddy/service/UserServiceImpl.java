@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.task.buddy.model.Role;
 import com.task.buddy.model.User;
 import com.task.buddy.repository.RoleRepository;
-import com.task.buddy.repository.TaskRepository;
 import com.task.buddy.repository.UserRepository;
 
 @Service

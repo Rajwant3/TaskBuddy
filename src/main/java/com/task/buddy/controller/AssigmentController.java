@@ -26,7 +26,7 @@ public class AssigmentController {
     public String showAssigmentForm(Model model) {
         model.addAttribute("users", userService.findAll());
         model.addAttribute("freeTasks", taskService.findFreeTasks());
-        return "forms/assignment";
+        return "views/assignment";
     }
 
     @GetMapping("/assignment/{userId}")
@@ -34,7 +34,7 @@ public class AssigmentController {
         model.addAttribute("selectedUser", userService.getUserById(userId));
         model.addAttribute("users", userService.findAll());
         model.addAttribute("freeTasks", taskService.findFreeTasks());
-        return "forms/assignment";
+        return "views/assignment";
     }
 
     @GetMapping("/assignment/assign/{userId}/{taskId}")
