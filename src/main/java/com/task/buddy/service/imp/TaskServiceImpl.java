@@ -1,4 +1,4 @@
-package com.task.buddy.service;
+package com.task.buddy.service.imp;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.task.buddy.model.Task;
 import com.task.buddy.model.User;
 import com.task.buddy.repository.TaskRepository;
+import com.task.buddy.service.TaskService;
 
 @Service
 public class TaskServiceImpl implements TaskService {

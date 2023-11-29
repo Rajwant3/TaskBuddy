@@ -16,6 +16,7 @@ import com.task.buddy.model.Task;
 import com.task.buddy.model.User;
 import com.task.buddy.service.TaskService;
 import com.task.buddy.service.UserService;
+import com.task.buddy.utils.Utility;
 
 @Controller
 public class TaskController {
@@ -29,13 +30,19 @@ public class TaskController {
 		this.userService = userService;
 	}
 
+	/**
+	 * Tasks List
+	 * @param model
+	 * @param principal
+	 * @return
+	 */
 	@GetMapping("/tasks")
 	public String listTasks(Model model, Principal principal) {
 		prepareTasksListModel(model, principal);
 		model.addAttribute("onlyInProgress", false);
 		return "views/tasks";
 	}
-
+	
 	@GetMapping("/tasks/in-progress")
 	public String listTasksInProgress(Model model, Principal principal) {
 		prepareTasksListModel(model, principal);
@@ -54,6 +61,13 @@ public class TaskController {
 
 	}
 
+	
+	/**
+	 * Return view of creating a new task.
+	 * @param model
+	 * @param principal
+	 * @return
+	 */
 	@GetMapping("/task/create")
 	public String showEmptyTaskForm(Model model, Principal principal) {
 		String email = principal.getName();
@@ -65,9 +79,17 @@ public class TaskController {
 			task.setOwner(user);
 		}
 		model.addAttribute("task", task);
+		model.addAttribute("priorityMap", Utility.priorityMap);
 		return "views/task-new";
 	}
 
+	/**
+	 * Save newly created tasks.
+	 * 
+	 * @param task
+	 * @param bindingResult
+	 * @return
+	 */
 	@PostMapping("/task/create")
 	public String createTask(@Valid Task task, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
@@ -78,12 +100,27 @@ public class TaskController {
 		return "redirect:/tasks";
 	}
 
+	/**
+	 * Return view to edit an existing task.
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/task/edit/{id}")
 	public String showFilledTaskForm(@PathVariable Long id, Model model) {
 		model.addAttribute("task", taskService.getTaskById(id));
+		model.addAttribute("priorityMap", Utility.priorityMap);
 		return "views/task-edit";
 	}
 
+	/**
+	 * Save edited task.
+	 * @param task
+	 * @param bindingResult
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/task/edit/{id}")
 	public String updateTask(@Valid Task task, BindingResult bindingResult, @PathVariable Long id, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -93,18 +130,29 @@ public class TaskController {
 		return "redirect:/tasks";
 	}
 
+	/**
+	 * Delete a task
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/task/delete/{id}")
 	public String deleteTask(@PathVariable Long id) {
 		taskService.deleteTask(id);
 		return "redirect:/tasks";
 	}
 
+	/**
+	 * Completed task
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/task/mark-done/{id}")
 	public String setTaskCompleted(@PathVariable Long id) {
 		taskService.setTaskCompleted(id);
 		return "redirect:/tasks";
 	}
 
+	
 	@GetMapping("/task/unmark-done/{id}")
 	public String setTaskNotCompleted(@PathVariable Long id) {
 		taskService.setTaskNotCompleted(id);

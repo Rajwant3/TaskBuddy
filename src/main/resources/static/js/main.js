@@ -25,7 +25,25 @@ $(document).ready(function() {
 			columnDefs: [
 				{
 					orderable: false,
-					targets: [6, 7]
+					targets: [7, 8]
+				}
+			],
+			pageLength: 25,
+			paging: true, // Enable paging
+			lengthChange: true, // Show the page length dropdown
+			searching: true, // Enable search box
+			info: true, // Show information about the table
+			ordering: true // Enable ordering
+		});
+	$('.dataTables_length').addClass('bs-select');
+
+	//Category sorting datatable	
+	$('#sortableCatTable').DataTable(
+		{
+			columnDefs: [
+				{
+					orderable: false,
+					targets: [3, 4]
 				}
 			],
 			pageLength: 25,

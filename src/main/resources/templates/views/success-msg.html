@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<!--/*/ <th:block th:insert="~{fragments/head :: head}"></th:block> /*/-->
+<title>Register - Success</title>
+</head>
+
+<body>
+
+	<header>
+		<!--/*/ <th:block th:insert="~{fragments/header :: header('register')}"></th:block> /*/-->
+	</header>
+
+	<main class="container">
+		<div class="alert alert-success">
+			<h1 class="my-highest-header" th:text=${H1_SUCCESS_MSG}></h1>
+			<h3 th:text=${H3_SUCCESS_MSG}></h3>
+			<p th:text=${P_SUCCESS_MSG}></p>
+		</div>
+	</main>
+
+	<footer class="footer">
+		<!--/*/ <th:block th:insert="~{fragments/footer :: footer}"></th:block> /*/-->
+	</footer>
+
+</body>
+</html>

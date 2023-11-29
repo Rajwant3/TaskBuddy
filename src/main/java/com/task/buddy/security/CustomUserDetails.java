@@ -32,7 +32,6 @@ public class CustomUserDetails implements UserDetails {
 		return user.getName();
 	}
 
-	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
@@ -50,7 +49,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return user.isEnabled();
 	}
 
 //	public String getFullName() {

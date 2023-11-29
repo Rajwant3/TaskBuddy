@@ -9,23 +9,23 @@
 <body>
 
 	<header>
-		<!--/*/ <th:block th:insert="~{fragments/header :: header('create-new-task')}"></th:block> /*/-->
+		<!--/*/ <th:block th:insert="~{fragments/header :: header('task-category')}"></th:block> /*/-->
 	</header>
 
 	<main class="container">
 		<div class="card mb-3">
 
-			<h1 class="my-highest-header card-header">Edit Task</h1>
+			<h1 class="my-highest-header card-header">Edit Category</h1>
 
 			<div class="card card-body">
 
-				<form th:action="@{'/task/edit/'+ ${task.id}}" th:object="${task}"
+				<form th:action="@{'/category/edit/'+ ${category.id}}" th:object="${category}"
 					method="post">
 					<input type="hidden" th:field="*{id}" />
 
 					<!--name-->
 					<div class="form-group">
-						<label for="name" class="form-control-label">Task name</label>
+						<label for="name" class="form-control-label">Category name</label>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-pen"></i></span>
@@ -37,16 +37,6 @@
 							th:errors="*{name}"></div>
 					</div>
 
-					<!--Task Priority  -->
-					<div class="form-group">
-						<label for="taskPriority">Task Priority</label><select
-							id="priority" class="form-control select2" name="priority"
-							th:field="*{priority}">
-							<option th:each="priority : ${priorityMap}"
-								th:value="${priority.key}"
-								th:text="${priority.key + ' - ' + priority.value}"></option>
-						</select>
-					</div>
 
 					<!--description-->
 					<div class="form-group">
@@ -59,27 +49,10 @@
 							th:errors="*{description}"></div>
 					</div>
 
-					<!--date-->
-					<div class="form-group">
-						<label for="date" class="form-control-label">Due Date</label>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i
-									class="far fa-calendar-alt"></i></span>
-							</div>
-							<input type="date" class="form-control"
-								th:attr="value=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')},
-                                    min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
-								th:field="*{date}" id="date" />
-						</div>
-						<div class="text text-danger" th:if="${#fields.hasErrors('date')}"
-							th:errors="*{date}"></div>
-					</div>
-
 					<input type="submit" value="Submit" class="btn btn-primary" />
 					<button type="reset"
 						class="btn btn-outline-primary pull-right ml-3">Reset</button>
-					<a href="/tasks" type="reset"
+					<a href="/category/list" type="reset"
 						class="btn btn-outline-primary pull-right ml-3">Cancel</a>
 				</form>
 			</div>

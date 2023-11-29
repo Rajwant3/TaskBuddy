@@ -26,10 +26,16 @@ public class HomeController {
 	@RequestMapping("/")
 	public String showIndex(Model model, Principal principal) {
 
-		String email = principal.getName();
-		User signedUser = userService.getUserByEmail(email);
-		model.addAttribute("userName",signedUser.getName());
+		if (principal != null) {
+			String email = principal.getName();
+			User signedUser = userService.getUserByEmail(email);
+			model.addAttribute("userName", signedUser.getName());
+		}
 		return "views/home";
+//		}else {
+//			return "views/login";
+//		}
+
 	}
 
 	@GetMapping("/login")

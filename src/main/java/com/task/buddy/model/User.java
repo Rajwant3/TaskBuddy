@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.CascadeType;
@@ -21,6 +18,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
@@ -53,6 +52,19 @@ public class User {
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles;
 
+	private boolean enabled;
+//	@Column(name = "verification_code", updatable = false)
+//
+//	private String verificationCode;
+//
+//	public String getVerificationCode() {
+//		return verificationCode;
+//	}
+//
+//	public void setVerificationCode(String verificationCode) {
+//		this.verificationCode = verificationCode;
+//	}
+
 	public List<Task> getTasksCompleted() {
 		return tasksOwned.stream().filter(Task::isCompleted).collect(Collectors.toList());
 	}
@@ -70,11 +82,12 @@ public class User {
 	}
 
 	public User(@Email @NotEmpty String email, @NotEmpty String name, @NotEmpty @Length(min = 5) String password,
-			String photo) {
+			String photo,boolean enabled) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
 		this.photo = photo;
+		this.enabled=enabled;
 	}
 
 	public User(@Email @NotEmpty String email, @NotEmpty String name, @NotEmpty @Length(min = 5) String password,
@@ -113,6 +126,14 @@ public class User {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public void setPassword(String password) {

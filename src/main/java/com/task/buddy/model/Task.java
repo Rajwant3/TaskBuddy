@@ -20,137 +20,140 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Task {
- 
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "task_id")
-    private Long id;
-    
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "task_id")
+	private Long id;
+
 	@NotEmpty(message = "{task.name.not.empty}")
-    private String name;
-    
+	private String name;
+
 	@NotEmpty(message = "{task.description.not.empty}")
-    @Column(length = 1200)
-    @Size(max = 1200, message = "{task.description.size}")
-    private String description;
-    
+	@Column(length = 1200)
+	@Size(max = 1200, message = "{task.description.size}")
+	private String description;
+
 	@NotNull(message = "{task.date.not.null}")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
-    
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
+
 	private boolean isCompleted;
-    
-    private String creatorName;
-    
-    @ManyToOne
-    @JoinColumn(name = "OWNER_ID")
-    private User owner;
 
-    public long daysLeftUntilDeadline(LocalDate date) {
-        return ChronoUnit.DAYS.between(LocalDate.now(), date);
-    }
+	private String creatorName;
 
-    public Task() {
-    }
+//	@NotEmpty(message = "{task.priority.not.empty}")
+	private int priority=1;
 
-    public Task(@NotEmpty String name,
-                @NotEmpty @Size(max = 1200) String description,
-                @NotNull LocalDate date,
-                boolean isCompleted,
-                String creatorName) {
-        this.name = name;
-        this.description = description;
-        this.date = date;
-        this.isCompleted = isCompleted;
-        this.creatorName = creatorName;
-    }
+	@ManyToOne
+	@JoinColumn(name = "OWNER_ID")
+	private User owner;
 
-    public Task(@NotEmpty String name,
-                @NotEmpty @Size(max = 1200) String description,
-                @NotNull LocalDate date,
-                boolean isCompleted,
-                String creatorName,
-                User owner) {
-        this.name = name;
-        this.description = description;
-        this.date = date;
-        this.isCompleted = isCompleted;
-        this.creatorName = creatorName;
-        this.owner = owner;
-    }
+	public long daysLeftUntilDeadline(LocalDate date) {
+		return ChronoUnit.DAYS.between(LocalDate.now(), date);
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Task() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Task(@NotEmpty String name, @NotEmpty @Size(max = 1200) String description, @NotNull LocalDate date,
+			boolean isCompleted, String creatorName) {
+		this.name = name;
+		this.description = description;
+		this.date = date;
+		this.isCompleted = isCompleted;
+		this.creatorName = creatorName;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Task(@NotEmpty String name, @NotEmpty @Size(max = 1200) String description, @NotNull LocalDate date,
+			boolean isCompleted, String creatorName, User owner, int priority) {
+		this.name = name;
+		this.description = description;
+		this.date = date;
+		this.isCompleted = isCompleted;
+		this.creatorName = creatorName;
+		this.owner = owner;
+		this.priority = priority;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public int getPriority() {
+		return priority;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public LocalDate getDate() {
-        return date;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public boolean isCompleted() {
-        return isCompleted;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getCreatorName() {
-        return creatorName;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setCreatorName(String creatorName) {
-        this.creatorName = creatorName;
-    }
+	public LocalDate getDate() {
+		return date;
+	}
 
-    public User getOwner() {
-        return owner;
-    }
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+	public boolean isCompleted() {
+		return isCompleted;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
-        return isCompleted == task.isCompleted &&
-                Objects.equals(id, task.id) &&
-                name.equals(task.name) &&
-                description.equals(task.description) &&
-                date.equals(task.date) &&
-                Objects.equals(creatorName, task.creatorName) &&
-                Objects.equals(owner, task.owner);
-    }
+	public void setCompleted(boolean completed) {
+		isCompleted = completed;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, date, isCompleted, creatorName, owner);
-    }
+	public String getCreatorName() {
+		return creatorName;
+	}
+
+	public void setCreatorName(String creatorName) {
+		this.creatorName = creatorName;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Task task = (Task) o;
+		return isCompleted == task.isCompleted && Objects.equals(id, task.id) && name.equals(task.name)
+				&& description.equals(task.description) && date.equals(task.date)
+				&& Objects.equals(creatorName, task.creatorName) && Objects.equals(owner, task.owner);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, description, date, isCompleted, creatorName, owner);
+	}
 }

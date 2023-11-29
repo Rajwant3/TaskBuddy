@@ -37,11 +37,12 @@ public class SecurityConfiguration {
 		http.authenticationProvider(authenticationProvider());
 
 		http.authorizeHttpRequests(authz -> authz
-				.requestMatchers("/register", "/", "/h2-console/**", "/login", "/about","/js/**", "/images/**","/css/**", "/webjars/**")
+				.requestMatchers("/register", "/reset_password/**", "/", "/h2-console/**", "/verify/**",
+						"/forgot_password/**", "/login", "/about", "/js/**", "/images/**", "/css/**", "/webjars/**")
 				.permitAll()
 				.requestMatchers("/profile/**", "/tasks/**", "/task/**", "/users", "/user/**", "/h2-console/**")
-				.hasAnyAuthority("USER", "ADMIN").requestMatchers("/assignment/**").hasAuthority("ADMIN").anyRequest()
-				.authenticated())
+				.hasAnyAuthority("USER", "ADMIN").requestMatchers("/assignment/**", "category/**")
+				.hasAuthority("ADMIN").anyRequest().authenticated())
 				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email")
 						.defaultSuccessUrl("/", true).permitAll())
 				.logout(logout -> logout.logoutSuccessUrl("/login"));

@@ -1,4 +1,4 @@
-package com.task.buddy.service;
+package com.task.buddy.service.imp;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.task.buddy.model.Role;
 import com.task.buddy.repository.RoleRepository;
+import com.task.buddy.service.RoleService;
 
 @Service
 public class RoleServiceImpl implements RoleService {

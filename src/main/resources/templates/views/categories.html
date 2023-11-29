@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<!--/*/ <th:block th:insert="~{fragments/head :: head}"></th:block> /*/-->
+<title>Tasks Categories List</title>
+</head>
+
+<body>
+
+	<!-- <header> -->
+	<!--/*/ <th:block th:insert="~{fragments/header :: header('task-category')}"></th:block> /*/-->
+	<!-- </header>
+ -->
+	<main class="container">
+		<div class="card mb-3">
+
+			<div class="card card-body">
+				<table id="sortableCatTable"
+					class="my-tab table table-hover text-center">
+					<thead class="table-primary">
+						<tr>
+							<th class="text-left">Category Name</th>
+							<th class="text-left">Category Description</th>
+							<th class="d-none d-lg-table-cell">Creator Name</th>
+							<th class="d-none d-lg-table-cell" colspan="2">Actions</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+						<tr th:each="cat : ${categories}">
+
+							<!--modal with category details-->
+							<div class="modal" th:id="modal-details+${cat.id}">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 th:text="${cat.name}" class="modal-title text-info"></h4>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p th:text="${'Description: '+cat.description}"></p>
+
+											<p th:text="${'category creator: '+cat.creatorName}"></p>
+											<!--edit button-->
+											<div th:if="${isAdminSigned or isThisOneSigned}"
+												class="d-lg-none m-2">
+												<a th:href="${'/category/edit/' + cat.id}"
+													class="btn btn-outline-success btn-sm">Edit</a>
+											</div>
+
+											<div th:unless="${isAdminSigned or isThisOneSigned}"
+												class="d-lg-none m-2">
+												<span data-toggle="tooltip" data-placement="top"
+													data-html="true" title="Only admin can edit this category">
+													<a th:href="${'/category/edit/' + cat.id}"
+													class="btn btn-outline-secondary btn-sm disabled">Edit</a>
+												</span>
+											</div>
+											<!--delete button-->
+											<div th:if="${isAdminSigned or isThisOneSigned}"
+												class="d-lg-none m-2">
+												<a data-toggle="modal" data-target="#modal-delete"
+													th:attr="data-target='#modal-delete'+${cat.id}"
+													th:href="${'/category/delete/' + cat.id}"
+													class="btn btn-outline-danger btn-sm">Delete </a>
+											</div>
+
+											<div th:unless="${isAdminSigned or isThisOneSigned}"
+												class="d-lg-none m-2">
+												<span data-toggle="tooltip" data-placement="top"
+													data-html="true"
+													title="Only admin can delete this category"> <a
+													href="" class="btn btn-outline-secondary btn-sm disabled">Delete</a>
+												</span>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-outline-secondary"
+												data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--end of modal with category details-->
+
+							<!--  Category Name-->
+							<td th:text="${cat.name}" th:data-order="${cat.name}"></td>
+
+							<!--  Category Description-->
+							<td th:text="${cat.description}"
+								th:data-order="${cat.description}"></td>
+
+							<!--category creator-->
+							<td th:text="${cat.creatorName}" class="d-none d-lg-table-cell"></td>
+
+							<!--edit button-->
+							<td th:if="${isAdminSigned or isThisOneSigned}"
+								class="d-none d-lg-table-cell"><a
+								th:href="${'/category/edit/' + cat.id}"
+								class="btn btn-outline-success btn-sm">Edit</a></td>
+
+							<td th:unless="${isAdminSigned or isThisOneSigned}"
+								class="d-none d-lg-table-cell"><span data-toggle="tooltip"
+								data-placement="top" data-html="true"
+								title="Only admin can edit this category"> <a
+									th:href="${'/category/edit/' + cat.id}"
+									class="btn btn-outline-secondary btn-sm disabled">Edit</a>
+							</span></td>
+
+							<!--delete button-->
+							<td th:if="${isAdminSigned or isThisOneSigned}"
+								class="d-none d-lg-table-cell"><a data-toggle="modal"
+								data-target="#modal-delete"
+								th:attr="data-target='#modal-delete'+${cat.id}"
+								th:href="${'/category/delete/' + cat.id}"
+								class="btn btn-outline-danger btn-sm">Delete </a></td>
+
+							<td th:unless="${isAdminSigned or isThisOneSigned}"
+								class="d-none d-lg-table-cell"><span data-toggle="tooltip"
+								data-placement="top" data-html="true"
+								title="Only admin can delete this category"> <a href=""
+									class="btn btn-outline-secondary btn-sm disabled">Delete</a>
+							</span></td>
+
+							<!--modal for delete confirmation-->
+							<div class="modal" th:id="modal-delete+${cat.id }">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title text-danger">Delete Confirmation</h3>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p
+												th:text="${'Are you sure you want to delete category: &quot '+cat.name+'&quot?'}"></p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-outline-secondary"
+												data-dismiss="modal">Cancel</button>
+											<a th:href="${'/category/delete/' + cat.id}"> <span
+												class="btn btn-danger">Delete</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--end of modal for delete confirmation-->
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+
+	<!-- <footer class="footer">
+ -->
+	<!--/*/ <th:block th:insert="~{fragments/footer :: footer}"></th:block> /*/-->
+	<!-- </footer>
+ -->
+	<!--DataTable plug-in-->
+	<!--remain scroll position after redirect-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
