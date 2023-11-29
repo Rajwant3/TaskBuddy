@@ -43,11 +43,23 @@ public class Task {
 	private String creatorName;
 
 //	@NotEmpty(message = "{task.priority.not.empty}")
-	private int priority=1;
+	private int priority = 1;
 
 	@ManyToOne
 	@JoinColumn(name = "OWNER_ID")
 	private User owner;
+
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public long daysLeftUntilDeadline(LocalDate date) {
 		return ChronoUnit.DAYS.between(LocalDate.now(), date);
@@ -57,16 +69,18 @@ public class Task {
 	}
 
 	public Task(@NotEmpty String name, @NotEmpty @Size(max = 1200) String description, @NotNull LocalDate date,
-			boolean isCompleted, String creatorName) {
+			boolean isCompleted, String creatorName, Category category) {
 		this.name = name;
 		this.description = description;
 		this.date = date;
 		this.isCompleted = isCompleted;
 		this.creatorName = creatorName;
+		this.category = category;
+
 	}
 
 	public Task(@NotEmpty String name, @NotEmpty @Size(max = 1200) String description, @NotNull LocalDate date,
-			boolean isCompleted, String creatorName, User owner, int priority) {
+			boolean isCompleted, String creatorName, User owner, int priority, Category category) {
 		this.name = name;
 		this.description = description;
 		this.date = date;
@@ -74,6 +88,7 @@ public class Task {
 		this.creatorName = creatorName;
 		this.owner = owner;
 		this.priority = priority;
+		this.category = category;
 	}
 
 	public int getPriority() {

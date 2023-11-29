@@ -25,7 +25,7 @@ $(document).ready(function() {
 			columnDefs: [
 				{
 					orderable: false,
-					targets: [7, 8]
+					targets: [8, 9]
 				}
 			],
 			pageLength: 25,

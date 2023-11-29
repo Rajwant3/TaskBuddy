@@ -47,6 +47,6 @@ public class HomeController {
 
 	@RequestMapping("/about")
 	public String showAboutPage() {
-		return "views/about";
+		return "views/index";
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.task.buddy.model.Task;
 import com.task.buddy.model.User;
+import com.task.buddy.service.CategoryService;
 import com.task.buddy.service.TaskService;
 import com.task.buddy.service.UserService;
 import com.task.buddy.utils.Utility;
@@ -23,15 +24,18 @@ public class TaskController {
 
 	private TaskService taskService;
 	private UserService userService;
+	private CategoryService categoryService;
 
 	@Autowired
-	public TaskController(TaskService taskService, UserService userService) {
+	public TaskController(TaskService taskService, UserService userService, CategoryService categoryService) {
 		this.taskService = taskService;
 		this.userService = userService;
+		this.categoryService = categoryService;
 	}
 
 	/**
 	 * Tasks List
+	 * 
 	 * @param model
 	 * @param principal
 	 * @return
@@ -42,7 +46,7 @@ public class TaskController {
 		model.addAttribute("onlyInProgress", false);
 		return "views/tasks";
 	}
-	
+
 	@GetMapping("/tasks/in-progress")
 	public String listTasksInProgress(Model model, Principal principal) {
 		prepareTasksListModel(model, principal);
@@ -58,12 +62,13 @@ public class TaskController {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("signedUser", signedUser);
 		model.addAttribute("isAdminSigned", signedUser.isAdmin());
+		model.addAttribute("categories", categoryService.findAll());
 
 	}
 
-	
 	/**
 	 * Return view of creating a new task.
+	 * 
 	 * @param model
 	 * @param principal
 	 * @return
@@ -80,6 +85,8 @@ public class TaskController {
 		}
 		model.addAttribute("task", task);
 		model.addAttribute("priorityMap", Utility.priorityMap);
+		model.addAttribute("categories", categoryService.findAll());
+
 		return "views/task-new";
 	}
 
@@ -102,6 +109,7 @@ public class TaskController {
 
 	/**
 	 * Return view to edit an existing task.
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
@@ -110,11 +118,13 @@ public class TaskController {
 	public String showFilledTaskForm(@PathVariable Long id, Model model) {
 		model.addAttribute("task", taskService.getTaskById(id));
 		model.addAttribute("priorityMap", Utility.priorityMap);
+		model.addAttribute("categories", categoryService.findAll());
 		return "views/task-edit";
 	}
 
 	/**
 	 * Save edited task.
+	 * 
 	 * @param task
 	 * @param bindingResult
 	 * @param id
@@ -132,6 +142,7 @@ public class TaskController {
 
 	/**
 	 * Delete a task
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -143,6 +154,7 @@ public class TaskController {
 
 	/**
 	 * Completed task
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -152,7 +164,6 @@ public class TaskController {
 		return "redirect:/tasks";
 	}
 
-	
 	@GetMapping("/task/unmark-done/{id}")
 	public String setTaskNotCompleted(@PathVariable Long id) {
 		taskService.setTaskNotCompleted(id);

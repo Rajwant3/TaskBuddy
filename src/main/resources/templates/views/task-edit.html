@@ -48,6 +48,16 @@
 						</select>
 					</div>
 
+					<!--Task Categories  -->
+					<div class="form-group">
+						<label for="taskCategory">Task Category</label><select
+							id="category" class="form-control select2" name="category"
+							th:field="*{category}">
+							<option th:each="category : ${categories}"
+								th:value="${category.id}" th:text="${category.name}"></option>
+						</select>
+					</div>
+
 					<!--description-->
 					<div class="form-group">
 						<label for="description" class="form-control-label">Task

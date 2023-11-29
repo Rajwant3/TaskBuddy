@@ -31,6 +31,8 @@
 					<thead class="table-primary">
 						<tr>
 							<th class="text-left">Task name</th>
+							<th class="text-left">Task Category</th>
+
 							<th class="text-left">Priority</th>
 
 							<th>Due Date</th>
@@ -122,10 +124,15 @@
 								</div>
 							</div>
 							<!--end of modal with task details-->
-							
+
+							<!--Task Category-->
+							<td th:if="${t.category!=null}" class="d-none d-lg-table-cell">
+								<div th:text="${t.category.getName()}"></div>
+							</td>
+
+
 							<!--  Priority-->
-							<td th:text="${t.priority}"
-								th:data-order="${t.priority}"></td>
+							<td th:text="${t.priority}" th:data-order="${t.priority}"></td>
 
 							<!--Date-->
 							<td th:text="${#temporals.format(t.date, 'dd-MM-yyyy')}"

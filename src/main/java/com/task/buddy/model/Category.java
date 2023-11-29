@@ -1,14 +1,17 @@
 package com.task.buddy.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.validation.constraints.Size;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
@@ -29,6 +32,9 @@ public class Category {
 
 	private String creatorName;
 
+	@OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+	private List<Task> tasksCategory;
+	
 	public Category() {
 	}
 

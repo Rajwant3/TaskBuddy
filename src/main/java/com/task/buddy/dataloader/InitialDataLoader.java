@@ -118,49 +118,49 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 		taskService.createTask(new Task("Create project report",
 				"Create a detailed project report, covering all the specifications as instructed. Use relavant screenshots, explain codes and projects structure.",
 				today.minusDays(40), true, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("crisel@lambton.com"), 3));
+				userService.getUserByEmail("crisel@lambton.com"), 3, categoryService.getCategoryById(2l)));
 
 		// 2
 		taskService.createTask(new Task("Create Project UI template",
 				"Design project UI, use all the relevants css, html, javascript, bootstap, jsp or thymleaf and create  a suitable graphical user interface for our task management project.",
 				today.minusDays(30), true, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("saurav@lambton.com"), 1));
+				userService.getUserByEmail("saurav@lambton.com"), 1, categoryService.getCategoryById(2l)));
 
 		// 3
 		taskService.createTask(new Task("User aunthentical module",
 				"Design and develop user authentical module which should have following features: User Registration User login/logout Password recovery",
 				today.minusDays(20), true, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("crisel@lambton.com"), 2));
+				userService.getUserByEmail("crisel@lambton.com"), 2, categoryService.getCategoryById(2l)));
 
 		// 4
 		taskService.createTask(new Task("Task Management Module",
 				"Design and develop task management module: \n Adding a new task, Editing existing tasks, Deleting tasks, Marking tasks as complete",
 				today.minusDays(10), true, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("saurav@lambton.com"), 2));
+				userService.getUserByEmail("saurav@lambton.com"), 2, categoryService.getCategoryById(2l)));
 
 		// 5
 		taskService.createTask(new Task("Category/Project Module",
 				"Design and develop creating task categories or projects Assigning tasks to specific categories/projects",
 				today.minusDays(5), false, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("saurav@lambton.com"), 4));
+				userService.getUserByEmail("saurav@lambton.com"), 4, categoryService.getCategoryById(2l)));
 
 		// 6
 		taskService.createTask(new Task("Priority Module", "Setting task priorities\r\n" + "Sorting tasks by priority",
 				today.minusDays(2), false, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("rajwant@lambton.com"), 4));
+				userService.getUserByEmail("rajwant@lambton.com"), 4, categoryService.getCategoryById(2l)));
 
 		// 7
 		taskService.createTask(new Task("Search and Filter Module:",
 				"Searching for tasks\r\n"
 						+ "Filtering tasks based on various criteria (e.g., date, priority, category)\r\n",
 				today.minusDays(1), false, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("sujita@lambton.com"), 5));
+				userService.getUserByEmail("sujita@lambton.com"), 5, categoryService.getCategoryById(2l)));
 
 		// 8
 		taskService.createTask(new Task("Collaboration Module:",
 				"Sharing tasks with other users\r\n" + "Real-time updates for shared tasks", today, false,
 				userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("rajwant@lambton.com"), 5));
+				userService.getUserByEmail("rajwant@lambton.com"), 5, categoryService.getCategoryById(2l)));
 
 		// 9
 		taskService.createTask(new Task("Scheduling Module:",
@@ -168,7 +168,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 						+ "Implementing recurring tasks or reminders.\r\n"
 						+ "Sending notifications or reminders when a scheduled task is approaching.",
 				today.plusDays(1), false, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("reea@lambton.com"), 5));
+				userService.getUserByEmail("reea@lambton.com"), 5, categoryService.getCategoryById(2l)));
 
 		// 10
 		taskService.createTask(new Task("Attachment and Notes Module:",
@@ -176,85 +176,85 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 						+ "Adding notes or comments to tasks for additional details.\r\n"
 						+ "Supporting multimedia attachments for more comprehensive task descriptions.\r\n",
 				today.plusDays(2), false, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("rajwant@lambton.com"), 2));
+				userService.getUserByEmail("rajwant@lambton.com"), 2, categoryService.getCategoryById(2l)));
 
 		// 11
 		taskService.createTask(
 				new Task("Grade Assignment 1", "Grade all students assignment 1 and provide detailed feedback",
 						today.plusDays(3), false, userService.getUserByEmail("niketa@lambton.com").getName(),
-						userService.getUserByEmail("niketa@lambton.com"), 2));
+						userService.getUserByEmail("niketa@lambton.com"), 2, categoryService.getCategoryById(1l)));
 
 		// 12
 		taskService.createTask(
 				new Task("Grade Assignment 2", "Grade all students assignment 2 and provide detailed feedback",
 						today.plusDays(4), false, userService.getUserByEmail("niketa@lambton.com").getName(),
-						userService.getUserByEmail("niketa@lambton.com"), 1));
+						userService.getUserByEmail("niketa@lambton.com"), 1, categoryService.getCategoryById(1l)));
 
 		// 13
 		taskService.createTask(
 				new Task("Grade Assignment 3", "Grade all students assignment 3 and provide detailed feedback",
 						today.plusDays(5), false, userService.getUserByEmail("niketa@lambton.com").getName(),
-						userService.getUserByEmail("niketa@lambton.com"), 2));
+						userService.getUserByEmail("niketa@lambton.com"), 2, categoryService.getCategoryById(1l)));
 
 		// 14
 		taskService.createTask(
 				new Task("Grade Assignment 4", "Grade all students assignment 4 and provide detailed feedback",
 						today.plusDays(6), false, userService.getUserByEmail("niketa@lambton.com").getName(),
-						userService.getUserByEmail("niketa@lambton.com"), 3));
+						userService.getUserByEmail("niketa@lambton.com"), 3, categoryService.getCategoryById(1l)));
 
 		// 15
 		taskService.createTask(
 				new Task("Grade Assignment 5", "Grade all students assignment 5 and provide detailed feedback",
 						today.plusDays(7), false, userService.getUserByEmail("niketa@lambton.com").getName(),
-						userService.getUserByEmail("niketa@lambton.com"), 4));
+						userService.getUserByEmail("niketa@lambton.com"), 4, categoryService.getCategoryById(1l)));
 		// 16
 		taskService
 				.createTask(new Task("Grade Java Project", "Grade all students projects and provide detailed feedback",
 						today.plusDays(10), false, userService.getUserByEmail("niketa@lambton.com").getName(),
-						userService.getUserByEmail("niketa@lambton.com"), 1));
+						userService.getUserByEmail("niketa@lambton.com"), 1, categoryService.getCategoryById(2l)));
 		// 17
 		taskService.createTask(new Task("Project Code comments", "Add detailed comments, in all modules of code.",
 				today.plusDays(3), false, userService.getUserByEmail("rajwant@lambton.com").getName(),
-				userService.getUserByEmail("niketa@lambton.com"), 4));
+				userService.getUserByEmail("niketa@lambton.com"), 4, categoryService.getCategoryById(2l)));
 		// 18
 		taskService.createTask(new Task("Dummy Task 1", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 19
 		taskService.createTask(new Task("Dummy Task 2", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 20
 		taskService.createTask(new Task("Dummy Task 3", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 21
 		taskService.createTask(new Task("Dummy Task 4", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 22
 		taskService.createTask(new Task("Dummy Task 5", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 23
 		taskService.createTask(new Task("Dummy Task 6", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 24
 		taskService.createTask(new Task("Dummy Task 7", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 25
 		taskService.createTask(new Task("Dummy Task 8", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 26
 		taskService.createTask(new Task("Dummy Task 9", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		// 27
 		taskService.createTask(new Task("Dummy Task 10", "Dummy Task Detailed description", today.plusDays(14), false,
-				userService.getUserByEmail("rajwant@lambton.com").getName()));
+				userService.getUserByEmail("rajwant@lambton.com").getName(), categoryService.getCategoryById(5l)));
 
 		taskService.findAll().stream()
 				.map(t -> "saved task: '" + t.getName() + "' for owner: " + getOwnerNameOrNoOwner(t))

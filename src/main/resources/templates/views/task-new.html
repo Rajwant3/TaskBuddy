@@ -40,13 +40,24 @@
 					<!--Task Priority  -->
 					<div class="form-group">
 						<label for="taskPriority">Task Priority</label><select
-							id="priority" class="form-control select2"
-							name="priority" th:field="*{priority}">
+							id="priority" class="form-control select2" name="priority"
+							th:field="*{priority}">
 							<option th:each="priority : ${priorityMap}"
 								th:value="${priority.key}"
 								th:text="${priority.key + ' - ' + priority.value}"></option>
 						</select>
 					</div>
+
+					<!--Task Categories  -->
+					<div class="form-group">
+						<label for="taskCategory">Task Category</label><select
+							id="category" class="form-control select2" name="category"
+							th:field="*{category}">
+							<option th:each="category : ${categories}" th:value="${category.id}"
+								th:text="${category.name}"></option>
+						</select>
+					</div>
+
 
 					<!--description-->
 					<div class="form-group">
