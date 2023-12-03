@@ -46,17 +46,23 @@
 					sec:authorize="isAuthenticated()"><a class="nav-link"
 					href="/users">Users List</a></li>
 
-				<!--Task Category -->
+				<!--Task Category List-->
 				<li
 					th:class="${activeTab == 'task-category'}? 'active nav-item mr-4' : 'nav-item mr-4'"
 					sec:authorize="hasAuthority('ADMIN')"><a class="nav-link"
 					href="/category/list">Task Category</a></li>
 
-				<!--About-->
+				<!--Create Task Category -->
 				<li
+					th:class="${activeTab == 'create-task-category'}? 'active nav-item mr-4' : 'nav-item mr-4'"
+					sec:authorize="hasAuthority('ADMIN')"><a class="nav-link"
+					href="/category/create">Create Task Category</a></li>
+				
+				<!--About-->
+			<!-- 	<li
 					th:class="${activeTab == 'about'}? 'active nav-item mr-4' : 'nav-item mr-4'">
 					<a class="nav-link" href="/about">Explore Me</a>
-				</li>
+				</li> -->
 			</ul>
 
 			<ul class="navbar-nav">

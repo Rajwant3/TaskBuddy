@@ -1,14 +1,11 @@
 package com.task.buddy.service.imp;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.task.buddy.model.Category;
-import com.task.buddy.model.Task;
-import com.task.buddy.model.User;
 import com.task.buddy.repository.CategoryRepository;
 import com.task.buddy.service.CategoryService;
 

@@ -3,7 +3,6 @@ package com.task.buddy.service;
 import java.util.List;
 
 import com.task.buddy.model.Category;
-import com.task.buddy.model.Task;
 
 public interface CategoryService {
 

@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.task.buddy.model.Category;
-import com.task.buddy.model.Task;
 import com.task.buddy.model.User;
 import com.task.buddy.service.CategoryService;
 import com.task.buddy.service.UserService;
-import com.task.buddy.utils.Utility;
 
 @Controller
 @RequestMapping("/category")
@@ -69,12 +67,9 @@ public class CategoryController {
 		String email = principal.getName();
 		User user = userService.getUserByEmail(email);
 
-		Task task = new Task();
-		task.setCreatorName(user.getName());
-		if (user.getRoleNames().contains("USER")) {
-			task.setOwner(user);
-		}
-		model.addAttribute("task", task);
+		Category category = new Category();
+		category.setCreatorName(user.getName());
+		model.addAttribute("category", category);
 		return "views/category-new";
 	}
 
@@ -86,18 +81,9 @@ public class CategoryController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	public String createCategory(@Valid Category category, BindingResult bindingResult, Model model,
-			Principal principal) {
+	public String createCategory(@Valid Category category, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			String email = principal.getName();
-			User user = userService.getUserByEmail(email);
 
-			Task task = new Task();
-			task.setCreatorName(user.getName());
-			if (user.getRoleNames().contains("USER")) {
-				task.setOwner(user);
-			}
-			model.addAttribute("task", task);
 			return "views/category-new";
 		}
 		categoryService.createCategory(category);
