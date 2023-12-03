@@ -86,8 +86,18 @@ public class CategoryController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	public String createCategory(@Valid Category category, BindingResult bindingResult) {
+	public String createCategory(@Valid Category category, BindingResult bindingResult, Model model,
+			Principal principal) {
 		if (bindingResult.hasErrors()) {
+			String email = principal.getName();
+			User user = userService.getUserByEmail(email);
+
+			Task task = new Task();
+			task.setCreatorName(user.getName());
+			if (user.getRoleNames().contains("USER")) {
+				task.setOwner(user);
+			}
+			model.addAttribute("task", task);
 			return "views/category-new";
 		}
 		categoryService.createCategory(category);

@@ -98,8 +98,11 @@ public class TaskController {
 	 * @return
 	 */
 	@PostMapping("/task/create")
-	public String createTask(@Valid Task task, BindingResult bindingResult) {
+	public String createTask(@Valid Task task, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("task", task);
+			model.addAttribute("priorityMap", Utility.priorityMap);
+			model.addAttribute("categories", categoryService.findAll());
 			return "views/task-new";
 		}
 		taskService.createTask(task);
