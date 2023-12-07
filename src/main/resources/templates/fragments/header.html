@@ -43,7 +43,7 @@
 				<!--Users List-->
 				<li
 					th:class="${activeTab == 'users-list'}? 'active nav-item mr-4' : 'nav-item mr-4'"
-					sec:authorize="isAuthenticated()"><a class="nav-link"
+					sec:authorize="hasAuthority('ADMIN')"><a class="nav-link"
 					href="/users">Users List</a></li>
 
 				<!--Task Category List-->

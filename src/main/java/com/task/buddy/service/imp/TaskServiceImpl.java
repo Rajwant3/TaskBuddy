@@ -1,6 +1,7 @@
 package com.task.buddy.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,15 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public void updateTask(Long id, Task updatedTask) {
-//        Task task = taskRepository.getOne(id);
-//        task.setName(updatedTask.getName());
-//        task.setDescription(updatedTask.getDescription());
-//        task.setDate(updatedTask.getDate());
-		updatedTask.setId(id);
-		taskRepository.save(updatedTask);
+		Optional<Task> taskOp = taskRepository.findById(id);
+		if (taskOp.isPresent()) {
+			Task task = taskOp.get();
+			task.setName(updatedTask.getName());
+			task.setDescription(updatedTask.getDescription());
+			task.setDate(updatedTask.getDate());
+			task.setId(id);
+			taskRepository.save(task);
+		}
 	}
 
 	@Override
